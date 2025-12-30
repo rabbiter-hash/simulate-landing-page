@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Leadership Without Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+  <header class="header" id="site-header">
+    <div class="container header__inner">
+      <a href="#" class="logo">GHG</a>
+      <nav class="nav">
+        <a href="#roles" class="nav__link" data-scroll>Roles</a>
+        <a href="#solutions" class="nav__link" data-scroll>Solutions</a>
+        <a href="#advantage" class="nav__link" data-scroll>Advantage</a>
+        <a href="#contact" class="nav__link nav__cta" data-scroll>Book Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__content">
+        <p class="hero__eyebrow">Greystone Hospitality Group</p>
+        <h1 class="hero__title">
+          Sales Leadership<br>
+          <span class="hero__accent">Without Limits</span>
+        </h1>
+        <p class="hero__subtitle">
+          GreyStone Hospitality Group provides elite, virtual Director of Sales teams.<br>
+          We drive revenue, manage market pipelines, and scale remotely.
+        </p>
+        <div class="hero__actions">
+          <a href="#solutions" class="btn btn--light" data-scroll>Explore Solutions</a>
+          <a href="#contact" class="btn btn--outline" data-scroll>Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="roles">
+      <div class="container">
+        <div class="section__header">
+          <p class="eyebrow">Our Expertise</p>
+          <h2 class="section__title">Comprehensive Remote Roles</h2>
+          <p class="section__subtitle">Tailored remote talent that integrates perfectly with your hotel operations.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card__icon">🧭</div>
+            <h3 class="card__title">Sales Coordinator</h3>
+            <ul class="card__list">
+              <li>CRM hygiene</li>
+              <li>RFP support</li>
+              <li>Calendar management</li>
+              <li>Lead triage</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__icon">📈</div>
+            <h3 class="card__title">Sales Manager</h3>
+            <ul class="card__list">
+              <li>Pipeline ownership</li>
+              <li>Account growth</li>
+              <li>Proposal delivery</li>
+              <li>Quarterly reviews</li>
+            </ul>
+          </article>
+          <article class="card card--featured">
+            <div class="card__icon">🏆</div>
+            <h3 class="card__title">Director of Sales</h3>
+            <ul class="card__list">
+              <li>Strategy leadership</li>
+              <li>Key account control</li>
+              <li>Forecast and pacing</li>
+              <li>Market positioning</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__icon">🛠️</div>
+            <h3 class="card__title">Task Force</h3>
+            <ul class="card__list">
+              <li>Rapid deployment</li>
+              <li>Turnaround sprints</li>
+              <li>Process stabilization</li>
+              <li>Gap coverage</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="feature feature--wide">
+          <h3 class="feature__title">Custom Solutions for Every Property</h3>
+          <p class="feature__text">We craft sales acceleration strategies to match brand standards and independent operators.</p>
+          <a href="#contact" class="btn btn--primary" data-scroll>Request Custom Plan</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="advantage">
+      <div class="container">
+        <div class="section__header">
+          <p class="eyebrow">Our Methodology</p>
+          <h2 class="section__title">The Strategic <span class="text-gradient">Virtual</span> Advantage</h2>
+        </div>
+        <div class="grid grid--advantage">
+          <div class="tile tile--dark">
+            <h3 class="tile__title">Remote</h3>
+            <p class="tile__text">Full remote integration, AI-empowered.</p>
+          </div>
+          <div class="tile tile--light">
+            <h3 class="tile__title">Virtual</h3>
+            <p class="tile__text">Systems-first, process-led execution.</p>
+          </div>
+          <div class="tile tile--accent">
+            <h3 class="tile__title">100%</h3>
+            <p class="tile__text">Outcome accountability.</p>
+          </div>
+        </div>
+        <ul class="checklist">
+          <li>Data-driven decision frameworks</li>
+          <li>Unified reporting and team alignment</li>
+          <li>Playbooks tailored to property segmentation</li>
+          <li>Revenue-safe experimentation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Ready to Optimize Your Sales?</h2>
+          <p class="section__subtitle">Connect with Greystone Hospitality Group to schedule a consultation or send a direct message.</p>
+        </div>
+        <div class="grid grid--cta">
+          <div class="cta-card">
+            <div class="cta-card__icon">📅</div>
+            <h3 class="cta-card__title">Book Consultation</h3>
+            <p class="cta-card__text">Schedule time with our leadership team.</p>
+            <a href="#contact" class="btn btn--green" data-scroll>View Calendar</a>
+          </div>
+          <div class="cta-card">
+            <div class="cta-card__icon">✉️</div>
+            <h3 class="cta-card__title">Email Us</h3>
+            <p class="cta-card__text">Send requirements and receive a tailored roadmap.</p>
+            <a href="#contact" class="btn btn--outline" data-scroll>Send Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="logo logo--invert">GHG</div>
+        <p class="footer__text">Practical virtual sales leadership for pipeline stability and predictable acceleration.</p>
+      </div>
+      <div class="footer__nav">
+        <h4 class="footer__title">Navigation</h4>
+        <ul class="footer__links">
+          <li><a href="#roles" data-scroll>Roles</a></li>
+          <li><a href="#solutions" data-scroll>Solutions</a></li>
+          <li><a href="#advantage" data-scroll>Advantage</a></li>
+          <li><a href="#contact" data-scroll>Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h4 class="footer__title">Contact</h4>
+        <ul class="footer__links">
+          <li><a href="#contact" data-scroll>Book Consultation</a></li>
+          <li><a href="#contact" data-scroll>Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <span>© 2025 Greystone Hospitality Group</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/smooth-scroll.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/main.js"></script>
+</body>
+<script>
+  // Empty script block to ensure CSP-friendly script ordering if needed
+</script>
+</html>

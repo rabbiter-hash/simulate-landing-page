@@ -1,0 +1,215 @@
+.cta-banner { padding: 0 0 80px 0; background: rgb(248, 250, 252); } /* Banner区域继承Services的淡灰背景 */
+.banner-box {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 24px;
+    padding: 70px 20px;
+    text-align: center;
+    color: white;
+}
+.banner-box h2 { font-size: 2.2rem; margin-bottom: 16px; font-weight: 700; }
+.banner-box p { max-width: 650px; margin: 0 auto 36px; opacity: 0.9; font-size: 1.1rem; line-height: 1.6; }
+.banner-box .btn { color: var(--primary-blue); font-weight: 700; }
+
+.features {
+    padding: 100px 0 100px;
+    background: #ffffff; /* 保持白色，以区分上下淡灰板块 */
+}
+
+/* 修改: 左右各占50% */
+.feature-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.text-blue { color: var(--primary-blue); }
+
+.feature-content h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #0f172a;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.feature-desc p {
+    color: #475569;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.feature-bullets { margin-bottom: 40px; }
+.feature-bullets li {
+    margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    color: #475569;
+    font-size: 1rem;
+    align-items: center;
+}
+.feature-bullets i {
+    color: #10b981;
+    background: #d1fae5;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+}
+
+/* System Proficiency */
+.system-proficiency {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.sp-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.sp-brands { display: flex; gap: 30px; }
+.brand-item { display: flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; font-size: 1rem; }
+.bar-mark { height: 20px; width: 4px; border-radius: 2px; display: inline-block; }
+.red-mark { background: #dc2626; }
+.blue-mark { background: #1e40af; }
+.orange-mark { background: #ea580c; }
+
+/* Visuals */
+.feature-visuals { display: flex; flex-direction: column; gap: 24px; }
+.visual-card {
+    padding: 32px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    /* 新增: 平滑过渡动画 */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+.visual-bottom-row .visual-card:hover {
+    transform: translateY(-8px); /* 向上浮动 8px */
+}
+
+/* 可选：针对白色卡片悬停时加深阴影，增加立体感 */
+.visual-bottom-row .v-white:hover {
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.12);
+}
+
+/* 可选：针对蓝色卡片悬停时加深蓝色投影 */
+.visual-bottom-row .v-blue:hover {
+    box-shadow: 0 25px 30px -5px rgba(37, 99, 235, 0.4);
+}
+
+.v-dark {
+    background: #0f172a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 220px;
+}
+.v-icon {
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: #60a5fa;
+    margin-bottom: auto;
+}
+.v-dark h3 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700;}
+.v-dark p { color: #94a3b8; font-size: 0.95rem; }
+
+.corner-icon {
+    position: absolute;
+    bottom: 20px; right: 20px;
+    background: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #0f172a;
+}
+
+.visual-bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.v-white {
+    background: white;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border: 1px solid #f1f5f9;
+}
+.v-icon-center { font-size: 2rem; color: var(--primary-blue); margin-bottom: 16px; }
+.v-white h3 { font-size: 1.4rem; color: #0f172a; font-weight: 700; margin-bottom: 4px; }
+.v-white p { font-size: 0.9rem; color: #64748b; }
+
+.v-blue {
+    background: var(--primary-blue);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+}
+.v-blue h3 { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.v-blue p { font-size: 0.9rem; opacity: 0.9; margin-top: 8px; font-weight: 500;}
+
+/* -------------------------------------
+   Responsive Design
+   ------------------------------------- */
+
+@media (max-width: 1024px) {
+    .feature-layout {
+        grid-template-columns: 1fr; /* Stack visually */
+        gap: 60px;
+    }
+    
+    /* Ensure visual part is visible enough */
+    .feature-visuals {
+        order: -1; /* Option: Show visuals first or last? Usually content first is better for SEO/Reading, but visuals first is nice for impact. Keeping default order for now but stacking. */
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .sp-brands {
+        flex-direction: row; /* Keep horizontal */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: space-between; /* Spread out */
+        gap: 12px; /* Smaller gap */
+    }
+    
+    .brand-item {
+        font-size: 0.9rem; /* Slightly smaller text */
+        flex: 1; /* Distribute space */
+        justify-content: center; /* Center content in their space */
+        white-space: nowrap;
+    }
+}

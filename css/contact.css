@@ -1,0 +1,246 @@
+/* 修改: 背景色为淡灰 */
+.contact {
+    padding: 80px 0 80px 0;
+    background-color: rgb(248, 250, 252);
+}
+
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    max-width: 890px;
+    margin: 0 auto 60px; /* 增加底部间距，与表单分开 */
+    /* Flex默认align-items: stretch，这保证了两个盒子本身高度是一样的 */
+}
+
+.contact-box {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 48px;
+    border-radius: 24px;
+    /*transition: 0.3s;*/
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+
+    /* 新增: 内部Flex布局，确保按钮底部对齐 */
+    display: flex;
+    flex-direction: column;
+
+    /* 动画过渡定义 */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+}
+
+/* 1. 卡片滑过效果：上浮 + 阴影加深 */
+.contact-box:hover {
+    transform: translateY(-8px); /* 上浮 */
+    box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.1); /* 阴影 */
+    border-color: #cbd5e1;
+}
+
+.bg-watermark {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 8rem;
+    color: #f1f5f9;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    /* 新增: 添加平滑过渡，让变亮的过程丝滑 */
+    transition: all 0.4s ease;
+}
+
+/* 新增: 鼠标滑过卡片时，水印变亮（变深一点点，使其更清晰） */
+.contact-box:hover .bg-watermark {
+    opacity: 1;        /* 透明度变回 100% */
+    color: #e2e8f0;    /* 颜色稍微加深一点 (Slate-200)，让它在白底上更“亮”更显眼 */
+    transform: scale(1.05) rotate(-5deg); /* 可选: 稍微放大并歪一点点，增加动感 */
+}
+
+/* 提升层级，防止被水印遮挡 */
+.icon-lg, .contact-box h3, .contact-box p, .btn-block { position: relative; z-index: 1; }
+
+.icon-lg {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    /* 图标颜色变化的过渡 */
+    transition: all 0.3s ease;
+}
+.icon-green { background: #d1fae5; color: #059669; }
+.icon-blue { background: #dbeafe; color: #2563eb; }
+/* 2. 卡片滑过时，图标变亮 (背景变实色，图标变白) */
+.contact-box:hover .icon-green {
+    background: #10b981;
+    color: white;
+    transform: scale(1.1); /* 微微放大，增加动感 */
+}
+.contact-box:hover .icon-blue {
+    background: #3b82f6;
+    color: white;
+    transform: scale(1.1);
+}
+.contact-box h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.contact-box p {
+    color: #64748b;
+    margin-bottom: 32px;
+    font-size: 1rem;
+    line-height: 1.6;
+
+    /* 核心修改: 让文字区域占据剩余空间，将按钮推到底部 */
+    flex-grow: 1;
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    gap: 8px;
+    transition: 0.2s;
+    font-size: 0.95rem;
+    margin-top: auto; /* 双重保险，确保按钮沉底 */
+}
+
+/* -------------------------------------
+   按钮颜色更新 [User Requested RGBs]
+   ------------------------------------- */
+
+/* 绿色按钮 */
+.btn-green {
+    background: rgb(5, 150, 105); /* 新 RGB */
+    color: white;
+}
+
+.btn-green:hover {
+    background: rgb(4, 120, 85); /* 稍微变深一点 */
+    /* 绿色光晕阴影: 使用新 RGB 的半透明色 */
+    box-shadow: 0 10px 20px -5px rgba(5, 150, 105, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 蓝色按钮 */
+.btn-blue {
+    background: rgb(37, 99, 235); /* 新 RGB */
+    color: white;
+}
+
+.btn-blue:hover {
+    background: rgb(29, 78, 216); /* 稍微变深一点 */
+    /* 蓝色光晕阴影: 使用新 RGB 的半透明色 */
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+}
+
+/* -------------------------------------
+   Contact Form Styles
+   ------------------------------------- */
+
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 24px;
+    padding: 48px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.form-wrapper h3 {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 1.5rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px; /* 默认底部间距，form-row 内的可覆盖 */
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #0f172a;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    border: none;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        flex-direction: column;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        padding: 24px;
+    }
+}

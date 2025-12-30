@@ -1,0 +1,100 @@
+.site-footer {
+    background: #020617;
+    padding: 80px 0 40px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    gap: 60px;
+    padding-bottom: 0;
+}
+
+.logo-box {
+    background: white;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px;
+    color: #020617;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+}
+
+.brand-col p { max-width: 320px; line-height: 1.6; color: #cbd5e1; }
+
+.footer-col h4 {
+    color: white;
+    margin-bottom: 24px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.footer-col ul li { margin-bottom: 14px; }
+
+.footer-col a {
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover { color: white; }
+
+.footer-arrow {
+    position: absolute;
+    top: 0; /* 贴着文字顶端 */
+    right: -18px; /* 放在文字右侧外面 */
+    font-size: 0.75em;
+    opacity: 0;
+    /* 初始位置：左下方滑入 */
+    transform: translate(-8px, 8px) rotate(-45deg);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.footer-col a:hover .footer-arrow {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-45deg);
+}
+
+.exp-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3b82f6;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.dot-blue { width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; }
+
+/* 细线: 还原 image_fa19aa.png 里的红框位置的线 */
+.footer-line {
+    height: 1px;
+    background: #1e293b; /* 深色分割线 */
+    margin: 60px 0 30px;
+    width: 100%;
+}
+
+.footer-btm {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+/* -------------------------------------
+   Responsive Design
+   ------------------------------------- */
+
+@media (max-width: 768px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-btm {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}

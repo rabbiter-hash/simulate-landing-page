@@ -1,0 +1,205 @@
+
+:root {
+    /* 核心颜色变量 */
+    --bg-dark: #020617;
+    --bg-surface: #0f172a;
+    --primary-blue: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-main: #0f172a; /* 深色主标题 */
+    --text-body: #475569; /* 正文灰 */
+    --text-light: #94a3b8; /* 浅色辅助文 */
+
+    /* 背景色变量 */
+    --bg-gray-section: rgb(248, 250, 252); /* 浅灰背景 */
+
+    /* 阴影变量 */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+}
+
+html, body {
+    overflow-x: hidden; /* 核心修复：防止动画 transform 导致的水平溢出，解决移动端吸顶 Header 显示异常问题 */
+    width: 100%;
+}
+
+html {
+    /* 移除 CSS 滚动控制，改用 JS 精确控制 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 核心字体定义: Inter */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: var(--text-main);
+    line-height: 1.5;
+
+    /* 字体渲染优化 (让字体看起来更细致、像Mac效果) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+ul { list-style: none; }
+
+/* ------------------
+   通用排版与组件
+   ------------------ */
+
+.section-head {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 标题字体修正: 更紧凑的字间距 */
+.section-head h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800; /* 特粗 */
+    color: #0f172a;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em; /* 稍微收紧 */
+}
+
+.section-head p {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-body);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.label-small {
+    color: var(--primary-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* 字母间距加宽 */
+    display: block;
+    margin-bottom: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 优化：更像物理弹性的贝塞尔曲线 */
+}
+
+/* 新增/迁移: 白色实心按钮样式
+   (从 hero.css 移过来，并增加了 hover 动画)
+*/
+.btn-white {
+    background: white;
+    color: #0f172a;
+    border: 1px solid white;
+}
+
+/* 滑过时的放大效果 */
+.btn-white:hover {
+    background: #f1f5f9;
+    transform: scale(1.08); /* 放大 1.08 倍 */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); /* 配合放大，增加投影深度 */
+}
+
+/* ------------------
+   Scroll Reveal Animation
+   ------------------ */
+
+.reveal-item {
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+/* 默认向上浮现 */
+.reveal-fade-up {
+    transform: translateY(40px);
+}
+
+/* 从上落下 (Header) */
+.reveal-from-top {
+    transform: translateY(-100%);
+}
+
+/* 从左侧滑入 (Contact Box 1) */
+.reveal-from-left {
+    transform: translateX(-50px) rotateY(-5deg); /* 加一点3D旋转更有门的感觉 */
+    transform-origin: left center;
+}
+
+/* 从右侧滑入 (Contact Box 2) */
+.reveal-from-right {
+    transform: translateX(50px) rotateY(5deg);
+    transform-origin: right center;
+}
+
+/* 激活状态 */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+}
+
+/* Hero 区域特殊慢动作 */
+.hero-content .reveal-item {
+    transition-duration: 1.8s; /* 更慢 */
+}
+
+/* ------------------
+   Back to Top Button
+   ------------------ */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 999;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--primary-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}

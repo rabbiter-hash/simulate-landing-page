@@ -1,0 +1,213 @@
+/* css/header.css */
+
+.site-header {
+    /* 修改: 改为 fixed 以便吸顶 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* 提高层级，防止被内容遮挡 */
+    padding: 24px 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 优化：只对背景和阴影做动画，防止高度/Padding跳动 */
+    /* 添加背景色，防止初始状态下透明 */
+    background-color: transparent;
+}
+
+/* -------------------------------------
+   Sticky 状态 (滚动后触发)
+   ------------------------------------- */
+.site-header.sticky {
+    /* 修改: 使用指定的背景色 231, 232, 235 */
+    background: rgba(231, 232, 235, 0.95);
+    padding: 24px 0; /* 保持与初始状态相同的padding */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-icon {
+    background: #f1f5f9;
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    color: #0f172a;
+    transition: all 0.3s ease;
+}
+
+/* Sticky状态下Logo可以微调，这里保持不变即可，或者改为深色背景 */
+.site-header.sticky .logo-icon { background: #0f172a; color: white; }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* -------------------------------------
+   导航链接样式
+   ------------------------------------- */
+
+/* 默认状态 (深色背景上): 白色文字 */
+.nav-links a:not(.btn-pill) {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 99px;
+    transition: all 0.3s ease;
+}
+
+/* 默认悬停: 半透明白底 */
+.nav-links a:not(.btn-pill):hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sticky状态 (白底上): 深色文字 */
+.site-header.sticky .nav-links a:not(.btn-pill) {
+    color: #475569; /* 深灰色文字 */
+}
+
+/* Sticky状态悬停: 浅灰底 */
+.site-header.sticky .nav-links a:not(.btn-pill):hover {
+    color: #0f172a; /* 黑色文字 */
+    background-color: #f1f5f9; /* 浅灰色背景 */
+}
+
+/* -------------------------------------
+   右侧按钮样式 (Partner With Us)
+   ------------------------------------- */
+
+/* 默认状态: 白底黑字 */
+.btn-pill {
+    background: white;
+    color: #0f172a !important; /* 强制颜色 */
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-left: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-pill:hover {
+    background: #e2e8f0;
+}
+
+/* Sticky状态: 蓝底白字 */
+.site-header.sticky .btn-pill {
+    background: var(--primary-blue); /* 变成蓝色 #2563eb */
+    color: white !important;
+}
+
+/* Sticky状态按钮悬停: 深蓝色 */
+.site-header.sticky .btn-pill:hover {
+    background: #1d4ed8; /* 更深的蓝色 hover */
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* -------------------------------------
+   Mobile Navigation
+   ------------------------------------- */
+.mobile-menu-toggle {
+    display: none; /* Desktop hidden */
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative; /* Essential for z-index to work */
+    z-index: 101;
+}
+
+.mobile-menu-toggle.active {
+    color: white !important; /* Ensure visible on dark overlay */
+}
+
+.site-header.sticky .mobile-menu-toggle {
+    color: #0f172a;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        /* 确保移动端header完全可见 */
+        padding: 20px 0; /* 增加padding，确保有足够空间 */
+    }
+    
+    .site-header.sticky {
+        padding: 20px 0 !important; /* 强制保持Padding，防止被其他样式压缩 */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px; /* Larger touch target */
+        height: 48px;
+        margin-right: -12px; /* Compensate for extra width to keep alignment */
+    }
+
+    /* 移动端sticky状态下的汉堡菜单图标颜色 */
+    .site-header.sticky .mobile-menu-toggle {
+        color: #0f172a;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        z-index: 99; /* Below the toggle button */
+        /* 确保初始状态为隐藏 */
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a:not(.btn-pill) {
+        font-size: 1.5rem;
+        color: white !important; /* Force white in mobile menu */
+    }
+    
+    .nav-links .btn-pill {
+        margin-left: 0;
+        padding: 16px 32px;
+        font-size: 1.1rem;
+    }
+
+    /* 修复: 强制禁用移动端 Header 内部元素的动画，防止高度截断和布局错乱 */
+    .site-header .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* 修复: 确保 Header 内部容器有最小高度，防止子元素坍塌 */
+    .header-inner {
+        min-height: 40px; /* Logo高度 */
+        width: 100%;
+    }
+}

@@ -1,0 +1,184 @@
+.hero {
+    position: relative;
+    background-color: #020408;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.hero-bg-glow {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, #1e3a8a 0%, #020408 65%);
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 修正点: 堆叠 */
+.hero-top-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.company-name-hero {
+    color: #ffffff;
+    font-size: 1.35rem; /* 对应截图大小 */
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.badge-pill {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 6px 18px;
+    border-radius: 99px;
+    color: #93c5fd;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+/* 修改：添加动画属性 */
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+
+    /* 添加忽明忽暗动画：2秒循环一次 */
+    animation: dot-blink 2s infinite ease-in-out;
+}
+.hero h1 {
+    font-size: 4.8rem;
+    line-height: 1.05;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #60a5fa 20%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    margin-bottom: 50px;
+    max-width: 680px;
+    line-height: 1.6;
+}
+
+.hero-actions { display: flex; gap: 16px; }
+
+/*.btn-white { background: white; color: #0f172a; border: 1px solid white; }*/
+/*.btn-white:hover { background: #f1f5f9; }*/
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: 0.3s;
+}
+.btn-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: white; }
+
+.scroll-indicator {
+    /* 删除绝对定位，改用 margin 布局 */
+    /* position: absolute;  <-- 删除 */
+    /* bottom: 40px;        <-- 删除 */
+    /* left: 50%;           <-- 删除 */
+    /* transform: translateX(-50%); <-- 删除 */
+
+    margin-top: 10px;       /* 核心修改：用上边距将箭头推到按钮下方 */
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    z-index: 10;
+}
+
+.scroll-indicator:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* 动画关键帧保持不变 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes dot-blink {
+    0%, 100% {
+        opacity: 1; /* 完全不透明 (明) */
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3; /* 半透明 (暗) */
+        transform: scale(0.9); /* 稍微缩小一点，增加呼吸感 */
+    }
+}
+
+/* 强制让 Hero 区域的元素使用统一的动画过渡，覆盖可能存在的特定样式干扰 */
+/* .hero-content > * {
+    transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+} */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem; /* 移动端标题调小 */
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px; /* 限制按钮最大宽度 */
+        align-items: center; /* 确保子元素水平居中对齐 */
+    }
+
+    .hero-actions .btn {
+        justify-content: center;
+    }
+
+    .hero-actions .btn:first-child {
+        width: 70%;
+        min-width: 240px;
+    }
+
+    .hero-actions .btn:last-child {
+        width: 50%;
+        min-width: 160px;
+        font-size: 0.8rem;
+        margin-top: 8px; /* 增加一点垂直间距 */
+    }
+}

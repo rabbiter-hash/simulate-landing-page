@@ -1,0 +1,106 @@
+.services {
+    padding: 120px 0 100px 0;
+    background-color: rgb(248, 250, 252);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    /* Grid 默认会让所有子元素高度一致 */
+}
+
+.svc-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px 24px;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+
+    /* 内部Flex布局 */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 撑满Grid单元格高度 */
+}
+
+.svc-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+
+.icon-sq {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+}
+.blue-light { background: #eff6ff; color: var(--primary-blue); }
+.blue-dark { background: var(--primary-blue); color: white; }
+
+.svc-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #0f172a;
+}
+
+.svc-card p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+
+    /* 核心修改: 撑开高度，确保下方的分割线和列表在同一水平线上 */
+    flex-grow: 1;
+}
+
+.divider { height: 1px; width: 100%; margin-bottom: 24px; border-top: 1px dashed #cbd5e1; }
+
+.check-list {
+    margin-top: auto; /* 辅助对齐 */
+}
+
+.check-list li {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.check-list i { color: var(--primary-blue); font-size: 0.9rem; }
+
+/* Dark Card Specifics */
+.dark-card { background: #0f172a; border-color: #0f172a; }
+.dark-card h3 { color: white; }
+.dark-card p { color: #94a3b8; }
+.divider-dark { border-top-color: rgba(255,255,255,0.15); }
+.list-dark li { color: white; }
+.list-dark i { color: #60a5fa; }
+
+/* -------------------------------------
+   Responsive Design
+   ------------------------------------- */
+
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 columns */
+    }
+}
+
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* Mobile: 1 column */
+    }
+
+    .banner-box .btn {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+}

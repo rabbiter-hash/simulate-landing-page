@@ -92,15 +92,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navItems = document.querySelectorAll('.nav-links a');
+    const header = document.querySelector('.site-header'); // 获取 Header 元素
+
+    // 动态计算 Header 高度并设置给菜单
+    function setMobileMenuTop() {
+        if (window.innerWidth <= 768 && header && navLinks) {
+            const headerHeight = header.offsetHeight;
+            navLinks.style.top = `${headerHeight}px`;
+            navLinks.style.height = `calc(100vh - ${headerHeight}px)`;
+        } else if (navLinks) {
+            // PC端重置样式，避免影响
+            navLinks.style.top = '';
+            navLinks.style.height = '';
+        }
+    }
+
+    // 监听窗口大小变化和滚动（因为Sticky可能会改变Header高度）
+    window.addEventListener('resize', setMobileMenuTop);
+    window.addEventListener('scroll', setMobileMenuTop, { passive: true });
+    
+    // 初始化时执行一次
+    setMobileMenuTop();
 
     if (mobileBtn && navLinks) {
         mobileBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // 阻止事件冒泡，防止触发其他点击事件
+            
+            // 每次点击打开前重新计算一次高度，确保准确
+            setMobileMenuTop();
+            
             navLinks.classList.toggle('active');
             mobileBtn.classList.toggle('active'); // Add active class to button
             document.body.classList.toggle('no-scroll'); // 禁止/允许页面滚动
 
-            // 切换图标
+            // 切换图标 (由 CSS 动画接管，移除 JS 图标切换逻辑)
+            /*
             const icon = mobileBtn.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -109,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
             }
+            */
         });
 
         // 点击链接后自动关闭菜单
@@ -120,7 +147,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 点击菜单外部关闭菜单
         document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+            const isClickInside = navLinks.contains(e.target);
+            const isButton = mobileBtn.contains(e.target);
+            
+            // 特殊处理：如果点击的是 navLinks 本身（可能是点击了伪元素遮罩）
+            // 此时 e.target === navLinks
+            let isClickOnMask = false;
+            if (e.target === navLinks) {
+                // 获取菜单实际占据的区域（不包含伪元素）
+                const rect = navLinks.getBoundingClientRect();
+                // 如果点击的 X 坐标大于菜单的宽度，说明点在了右侧的遮罩上
+                if (e.clientX > rect.width) {
+                    isClickOnMask = true;
+                }
+            }
+
+            if (navLinks.classList.contains('active') && (!isClickInside || isClickOnMask) && !isButton) {
                 closeMobileMenu();
             }
         });
@@ -130,9 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.remove('active');
             mobileBtn.classList.remove('active');
             document.body.classList.remove('no-scroll');
-            const icon = mobileBtn.querySelector('i');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+            // CSS动画自动处理图标复原
         }
     }
 

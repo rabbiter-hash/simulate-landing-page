@@ -162,40 +162,161 @@
 
     .nav-links {
         position: fixed;
-        top: 0;
+        /* 通过JS动态设置top和height，这里保留默认值作为fallback */
+        top: 88px; 
         left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(15, 23, 42, 0.98);
-        backdrop-filter: blur(10px);
+        width: 80%;
+        height: calc(100vh - 88px);
+        background: #020617; /* 纯深色背景，更现代 */
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-top: 60px; /* 增加顶部留白 */
         align-items: center;
-        gap: 32px;
-        transform: translateY(-100%);
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        z-index: 99; /* Below the toggle button */
-        /* 确保初始状态为隐藏 */
+        gap: 40px; /* 增加间距 */
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease; /* 更平滑的 ease-out expo 曲线 */
+        z-index: 99;
         opacity: 0;
         visibility: hidden;
+        box-shadow: 10px 0 40px rgba(0,0,0,0.5); /* 更深的阴影 */
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* 遮罩层伪元素: 点击右侧空白处关闭菜单的视觉暗示 */
+    .nav-links::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 100%; /* 定位到菜单右侧 */
+        width: 100vw; /* 足够宽覆盖剩余屏幕 */
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none; /* 默认不阻挡点击 */
     }
 
     .nav-links.active {
-        transform: translateY(0);
+        /* 核心修改: 回到原位 */
+        transform: translateX(0);
         opacity: 1;
         visibility: visible;
     }
 
-    .nav-links a:not(.btn-pill) {
-        font-size: 1.5rem;
-        color: white !important; /* Force white in mobile menu */
+    .nav-links.active::before {
+        opacity: 1;
+        pointer-events: auto; /* 激活时允许点击 */
+    }
+
+    /* -------------------------------------
+       Hamburger Icon Animation
+       ------------------------------------- */
+    .hamburger-box {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+    }
+
+    .hamburger-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background-color: white; /* Default color */
+        border-radius: 4px;
+        transform: translateY(-50%);
+        transition: background-color 0.1s 0.1s ease; /* Wait for lines to collapse */
+    }
+
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: white; /* Default color */
+        border-radius: 4px;
+        transition: transform 0.2s ease, top 0.2s 0.2s ease, bottom 0.2s 0.2s ease;
+    }
+
+    .hamburger-inner::before {
+        top: -8px;
+    }
+
+    .hamburger-inner::after {
+        bottom: -8px;
+    }
+
+    /* Sticky state color */
+    .site-header.sticky .hamburger-inner,
+    .site-header.sticky .hamburger-inner::before,
+    .site-header.sticky .hamburger-inner::after {
+        background-color: #0f172a;
+    }
+
+    /* Active State (X shape) */
+    .mobile-menu-toggle.active .hamburger-inner {
+        background-color: transparent !important; /* Hide middle line */
+        transition-delay: 0.1s;
+    }
+
+    .mobile-menu-toggle.active .hamburger-inner::before {
+        top: 0;
+        transform: rotate(45deg);
+        transition: top 0.2s ease, transform 0.2s 0.2s ease; /* Delay rotation */
+        background-color: white; /* Ensure visible on dark menu */
+    }
+
+    .mobile-menu-toggle.active .hamburger-inner::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+        transition: bottom 0.2s ease, transform 0.2s 0.2s ease; /* Delay rotation */
+        background-color: white; /* Ensure visible on dark menu */
+    }
+
+    /* Ensure button is always visible when menu is active */
+    .mobile-menu-toggle.active .hamburger-inner::before,
+    .mobile-menu-toggle.active .hamburger-inner::after {
+         /* When menu is active (dark bg), make sure lines are white regardless of sticky state */
+         background-color: #0f172a !important; 
+         /* Wait, if the menu background is dark, the X should be white? 
+            But the header is above the menu. 
+            If header is sticky (white bg), icon is black. 
+            If header is transparent (dark bg), icon is white.
+            However, when menu is open, it sits BELOW the header. 
+            The header background might be transparent or white.
+            If the menu is open, usually we want high contrast against the header background.
+            Let's stick to the sticky/non-sticky rules, but ensure active state overrides if needed.
+         */
     }
     
-    .nav-links .btn-pill {
-        margin-left: 0;
-        padding: 16px 32px;
-        font-size: 1.1rem;
+    /* Correction: When menu is active, the X icon color depends on the header background.
+       If sticky (white header), X should be black.
+       If not sticky (transparent header), X should be white.
+       The existing CSS handles sticky color change via .site-header.sticky context.
+       We just need to ensure the transparent background trick works.
+    */
+
+    /* Staggered Animation for Menu Items */
+    .nav-links a {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
+
+    .nav-links.active a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .nav-links.active a:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active a:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active a:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active a:nth-child(4) { transition-delay: 0.4s; } /* Button */
+
 
     /* 修复: 强制禁用移动端 Header 内部元素的动画，防止高度截断和布局错乱 */
     .site-header .reveal-item {
